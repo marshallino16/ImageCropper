@@ -11,6 +11,9 @@ SwiftUI-ImageCropper
 
 Simple ratio based image cropper for SwiftUI
 
+<img width="653" alt="Screen Shot 2020-12-18 at 5 05 30 PM" src="https://user-images.githubusercontent.com/1506323/102635181-4293b700-4153-11eb-81aa-1175d58b4464.png">
+
+
 ## Features
 
 - Movable crop area
