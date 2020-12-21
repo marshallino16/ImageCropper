@@ -14,12 +14,6 @@ Simple ratio based image cropper for SwiftUI
 <img width="653" alt="Screen Shot 2020-12-18 at 5 05 30 PM" src="https://user-images.githubusercontent.com/1506323/102635181-4293b700-4153-11eb-81aa-1175d58b4464.png">
 
 
-## Features
-
-- Movable crop area
-- Convert crop area to crop CGRect 
-- Convert crop CGRect to crop area
-
 ## Requirements
 
 - Xcode 12
@@ -38,6 +32,7 @@ Using Xcode 12, go to `File -> Swift Packages -> Add Package Dependency` and ent
 
 ```swift
 ImageCropperView(image: Image("stock"),
+                 cropRect: nil,
                  ratio: ratio)
 .onCropChanged { (newCrop) in
   print(newCrop)
@@ -49,6 +44,12 @@ ImageCropperView(image: Image("stock"),
 
 #### Parameters
 
+| Param    | Type         | Initial Value | Optional |
+|----------|--------------|---------------|----------|
+| image    | Image        |               | no       |
+| cropRect | CGRect       | nil           | yes      |
+| ratio    | CropperRatio |               | no       |
+
 #### Modifiers 
 
 ImageCropperView comes with one modifier 
@@ -56,6 +57,10 @@ ImageCropperView comes with one modifier
 ```swift
 onCropChanged { ... }
 ```
+
+## Next
+
+- Pinch to zoom
 
 ## License
 
