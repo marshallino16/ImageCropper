@@ -31,6 +31,8 @@ Using Xcode 12, go to `File -> Swift Packages -> Add Package Dependency` and ent
 `ImageCropper` gives you access to a new view called `ImageCropperView`. It can be integrated within your view `body` like this : 
 
 ```swift
+let ratio = CropperRatio(width: 1, height: 1)
+
 ImageCropperView(image: Image("stock"),
                  cropRect: nil,
                  ratio: ratio)

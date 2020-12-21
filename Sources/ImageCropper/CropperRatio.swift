@@ -12,6 +12,11 @@ public struct CropperRatio {
   let width: CGFloat
   let height: CGFloat
   
+  public init(width: CGFloat, height: CGFloat) {
+    self.width = width
+    self.height = height
+  }
+  
   public static var r_1_1: Self {
     return .init(width: 1, height: 1)
   }
