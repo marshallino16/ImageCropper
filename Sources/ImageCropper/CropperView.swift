@@ -103,7 +103,7 @@ final class CropperViewModel: ObservableObject {
   var onCropChanged : ((CGRect) -> Void)?
   
   init(parentProxy: GeometryProxy,
-       initialCropRect: CGRect? = nil,
+       cropRect: CGRect? = nil,
        ratio: CropperRatio,
        onCropChanged : ((CGRect) -> Void)? = nil) {
     
@@ -111,8 +111,8 @@ final class CropperViewModel: ObservableObject {
     self.parentProxy = parentProxy
     self.ratio = ratio
     
-    if let initialCropRect = initialCropRect {
-      self.cropperRect = cropRectToCropView(with: initialCropRect)
+    if let cropRect = cropRect {
+      self.cropperRect = cropRectToCropView(with: cropRect)
     }
     else {
       initializeCropRect()
@@ -123,7 +123,10 @@ final class CropperViewModel: ObservableObject {
     cropperRect = createCropperFrame(for: parentProxy.size)
     
     // Save initial crop
-    onCropChanged?(cropViewToCropRect())
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+      self.onCropChanged?(self.cropViewToCropRect())
+    }
+    
   }
   
   fileprivate func cropViewToCropRect() -> CGRect {

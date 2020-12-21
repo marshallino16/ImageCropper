@@ -8,16 +8,19 @@
 import SwiftUI
 
 public struct ImageCropperView: View {
-  
-  var ratio: CropperRatio
-  
+
   let image: Image
+  let ratio: CropperRatio
+  let cropRect: CGRect?
+  
   var onCropChanged : ((CGRect) -> Void)?
   
   public init(image: Image,
+              cropRect: CGRect? = nil,
               ratio: CropperRatio) {
     self.image = image
     self.ratio = ratio
+    self.cropRect = cropRect
   }
   
   public var body: some View {
@@ -27,7 +30,7 @@ public struct ImageCropperView: View {
       .overlay(
         GeometryReader { reader in
           CropperView(viewModel: CropperViewModel(parentProxy: reader,
-                                                  initialCropRect: nil,
+                                                  cropRect: cropRect,
                                                   ratio: ratio,
                                                   onCropChanged: onCropChanged))
         }

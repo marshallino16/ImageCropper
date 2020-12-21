@@ -11,6 +11,7 @@ import ImageCropper
 struct ContentView: View {
   
   @State var ratio: CropperRatio = CropperRatio.r_1_1
+  @State var cropRect: CGRect? = nil
   
   var body: some View {
     VStack {
@@ -18,12 +19,11 @@ struct ContentView: View {
       
       Spacer()
       
-      ImageCropperView(image:
-                        Image("stock"),
-                       ratio: ratio
-      )
+      ImageCropperView(image: Image("stock"),
+                       cropRect: cropRect,
+                       ratio: ratio)
       .onCropChanged { (newCrop) in
-        print(newCrop)
+        cropRect = newCrop
       }
       
       
@@ -34,18 +34,21 @@ struct ContentView: View {
         
         Button(action: {
           ratio = CropperRatio.r_1_1
+          cropRect = nil
         }) {
           Text("1:1")
         }
         
         Button(action: {
           ratio = CropperRatio.r_3_2
+          cropRect = nil
         }) {
           Text("3:2")
         }
         
         Button(action: {
           ratio = CropperRatio.r_4_3
+          cropRect = nil
         }) {
           Text("4:3")
         }
