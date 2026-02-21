@@ -1,5 +1,11 @@
 .DS_Store
 /.build
+
+# Claude
+.claude/
+.agents/
+CLAUDE.md
+skills-lock.json
 /Packages
 /*.xcodeproj
 xcuserdata/

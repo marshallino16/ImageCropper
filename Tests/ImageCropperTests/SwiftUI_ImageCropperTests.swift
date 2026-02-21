@@ -1,15 +1,15 @@
 import XCTest
-@testable import SwiftUI_ImageCropper
+@testable import ImageCropper
 
-final class SwiftUI_ImageCropperTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(SwiftUI_ImageCropper().text, "Hello, World!")
-    }
+final class ImageCropperTests: XCTestCase {
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+  func testCropperRatioPresets() {
+    let r = CropperRatio.r_16_9
+    XCTAssertEqual(r.width, 16)
+    XCTAssertEqual(r.height, 9)
+  }
+
+  static var allTests = [
+    ("testCropperRatioPresets", testCropperRatioPresets),
+  ]
 }
