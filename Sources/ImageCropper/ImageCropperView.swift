@@ -155,6 +155,14 @@ extension ImageCropperView {
     return copy
   }
 
+  /// Show or hide corner guides on the crop frame. Default is `true`.
+  /// Corner guides are always hidden when using `.circle` crop shape.
+  public func showCornerGuides(_ show: Bool) -> Self {
+    var copy = self
+    copy.config.showCornerGuides = show
+    return copy
+  }
+
   /// Set the background color behind the image.
   public func backgroundColor(_ color: Color) -> Self {
     var copy = self

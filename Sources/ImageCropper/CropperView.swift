@@ -12,6 +12,20 @@ import UIKit
 import AppKit
 #endif
 
+// MARK: - AnyShape (type eraser for iOS 13+ compatibility)
+
+private struct AnyShape: Shape {
+  private let pathBuilder: @Sendable (CGRect) -> Path
+
+  init<S: Shape>(_ shape: S) {
+    pathBuilder = { rect in shape.path(in: rect) }
+  }
+
+  func path(in rect: CGRect) -> Path {
+    pathBuilder(rect)
+  }
+}
+
 // MARK: - CropperView
 
 struct CropperView: View {
@@ -45,6 +59,17 @@ struct CropperView: View {
   #endif
 
   // MARK: - Computed sizes
+
+  private var cropClipShape: AnyShape {
+    switch config.cropShape {
+    case .circle:
+      return AnyShape(Circle())
+    case .roundedRect(let cornerRadius):
+      return AnyShape(RoundedRectangle(cornerRadius: cornerRadius))
+    case .rectangle:
+      return AnyShape(Rectangle())
+    }
+  }
 
   var cropFrameSize: CGSize {
     let ratioValue = ratio.width / ratio.height
@@ -103,8 +128,7 @@ struct CropperView: View {
 
       // Corner guides + grid
       ZStack {
-        // Hide corner guides for circle shape
-        if config.cropShape != .circle {
+        if config.showCornerGuides && config.cropShape != .circle {
           CornerGuides(
             color: config.cornerColor,
             size: config.cornerSize,
@@ -118,6 +142,7 @@ struct CropperView: View {
           lineWidth: config.gridLineWidth,
           opacity: config.gridOpacity
         )
+        .clipShape(cropClipShape)
         .opacity(config.alwaysShowGrid || isInteracting ? 1 : 0)
         .animation(.easeInOut(duration: 0.2), value: isInteracting)
       }

@@ -17,7 +17,7 @@
 <br>
 
 <p align="center">
-  <img width="700" alt="SwiftUI-ImageCropper Demo" src="https://user-images.githubusercontent.com/1506323/102635181-4293b700-4153-11eb-81aa-1175d58b4464.png">
+  <img width="700" alt="SwiftUI-ImageCropper Demo" src="https://github.com/user-attachments/assets/855daa4d-488c-4175-92d6-93ae8aabc00a">
 </p>
 
 <br>
@@ -112,6 +112,7 @@ ImageCropperView(image: UIImage(named: "photo")!, ratio: .r_4_3)
   .backgroundColor(.black)
   .overlayStyle(color: .black, opacity: 0.55)
   .cornerStyle(color: .white, size: 20, weight: 2)
+  .showCornerGuides(true)
   .cropShape(.circle)
   .gridStyle(.goldenRatio)
   .gridColor(.white, lineWidth: 0.5, opacity: 0.6)
@@ -164,6 +165,7 @@ ImageCropperView(image: UIImage(named: "photo")!, ratio: .r_4_3)
 | `.backgroundColor(_:)` | `.black` | Background color behind the image |
 | `.overlayStyle(color:opacity:)` | black, 0.55 | Dimmed area outside the crop frame |
 | `.cornerStyle(color:size:weight:)` | white, 20, 2 | Corner guide appearance |
+| `.showCornerGuides(_:)` | `true` | Show or hide corner guides (always hidden for `.circle`) |
 | `.cropShape(_:)` | `.rectangle` | `.rectangle` · `.circle` · `.roundedRect(cornerRadius:)` |
 | `.gridStyle(_:)` | `.ruleOfThirds` | `.ruleOfThirds` · `.goldenRatio` · `.diagonal` · `.crosshair` · `.none` |
 | `.gridColor(_:lineWidth:opacity:)` | white, 0.5, 0.6 | Grid line appearance |

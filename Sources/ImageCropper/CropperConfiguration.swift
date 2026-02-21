@@ -23,6 +23,7 @@ struct CropperConfiguration {
   var gridOpacity: Double = 0.6
   var cropShape: CropShape = .rectangle
   var alwaysShowGrid: Bool = false
+  var showCornerGuides: Bool = true
 
   // MARK: - Behavior
 

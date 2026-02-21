@@ -28,6 +28,7 @@ struct ContentView: View {
   @State private var gridOpacity: Double = 0.6
   @State private var cropShapeChoice: CropShapeChoice = .rectangle
   @State private var roundedCornerRadius: CGFloat = 12
+  @State private var showCornerGuides: Bool = true
   @State private var alwaysShowGrid: Bool = false
   @State private var bgColorChoice: BgColorChoice = .black
 
@@ -109,6 +110,7 @@ struct ContentView: View {
     .backgroundColor(bgColorChoice.color)
     .overlayStyle(color: overlayColorChoice.color, opacity: overlayOpacity)
     .cornerStyle(color: cornerColorChoice.color, size: cornerSize, weight: cornerWeight)
+    .showCornerGuides(showCornerGuides)
     .cropShape(resolvedCropShape)
     .alwaysShowGrid(alwaysShowGrid)
     // Grid
@@ -241,6 +243,8 @@ struct ContentView: View {
         Text("\(cornerWeight, specifier: "%.1f")")
           .frame(width: 30, alignment: .trailing)
       }
+
+      Toggle("Show corner guides", isOn: $showCornerGuides)
     }
   }
 
